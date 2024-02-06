@@ -4,7 +4,7 @@
 [![dependency-status](https://deps.rs/repo/github/BartMassey/critical-section-lock-mut/status.svg)](https://deps.rs/repo/github/BartMassey/critical-section-lock-mut)
 
 # critical-section-lock-mut: simple locked mutable globals for embedded
-Copyright © Bart Massey 2024 (Version 0.1.1)
+Copyright © Bart Massey 2024 (Version 0.1.2)
 
 Lock data with mutable access on a single-core
 processor.  The locking is provided by a

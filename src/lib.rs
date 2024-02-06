@@ -1,4 +1,4 @@
-#![doc(html_root_url = "https://docs.rs/critical-section-lock-mut/0.1.1")]
+#![doc(html_root_url = "https://docs.rs/critical-section-lock-mut/0.1.2")]
 #![no_std]
 //! Lock data with mutable access on a single-core
 //! processor.  The locking is provided by a
