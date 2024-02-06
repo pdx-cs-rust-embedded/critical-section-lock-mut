@@ -1,0 +1,19 @@
+[package]
+name = "critical-section-lock-mut"
+description = "Provide locks for mutable data using `critical-section` crate."
+repository = "https://github.com/pdx-cs-rust-embedded/critical-section-lock-mut"
+authors = ["Bart Massey"]
+version = "0.1.0"
+edition = "2021"
+license = "mit"
+keywords = ["embedded", "mutex", "critical-section"]
+categories = ["embedded", "no-std", "no-std::no-alloc", "rust-patterns"]
+
+[dependencies]
+critical-section = "1.1.2"
+
+[dev-dependencies]
+version-sync = "0.9.5"
+
+[badges.maintenance]
+status = "actively-developed"
