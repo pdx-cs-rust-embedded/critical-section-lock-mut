@@ -1,4 +1,4 @@
-#![doc(html_root_url = "https://docs.rs/critical-section-lock-mut/0.1.0")]
+#![doc(html_root_url = "https://docs.rs/critical-section-lock-mut/0.1.1")]
 #![no_std]
 //! Lock data with mutable access on a single-core
 //! processor.  The locking is provided by a
@@ -83,6 +83,30 @@ impl<T> LockMut<T> {
             // &mut Option<T> → Option<&mut T> → &mut T
             let val_mut = cell.as_mut().expect("empty lock");
             f(val_mut);
+        });
+    }
+
+    /// Locks if this `LockMut` is initialized, then runs
+    /// the closure `f` with a mutable reference to the
+    /// locked data. If the `LockMut` is uninitialized,
+    /// this method does nothing.
+    ///
+    /// # Examples
+    ///
+    /// ```no_run
+    /// # use critical_section_lock_mut::LockMut;
+    /// static LOCKED_DATA: LockMut<u8> = LockMut::new();
+    /// LOCKED_DATA.try_with_lock(|_| panic!());
+    /// ```
+    pub fn try_with_lock<F: FnOnce(&mut T)>(&self, f: F) {
+        critical_section::with(|cs| {
+            // &LockMut<T> → &Mutex<RefCell<Option<T>>> →
+            // &RefCell<Option<T>> → &mut Option<T>
+            let mut cell = self.0.borrow(cs).borrow_mut();
+            // &mut Option<T> → Option<&mut T> → &mut T
+            if let Some(val_mut) = cell.as_mut() {
+                f(val_mut);
+            }
         });
     }
 }
