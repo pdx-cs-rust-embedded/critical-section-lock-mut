@@ -5,7 +5,7 @@ repository = "https://github.com/pdx-cs-rust-embedded/critical-section-lock-mut"
 authors = ["Bart Massey"]
 version = "0.1.2"
 edition = "2021"
-license = "mit"
+license-file = "LICENSE.txt"
 keywords = ["embedded", "mutex", "critical-section"]
 categories = ["embedded", "no-std", "no-std::no-alloc", "rust-patterns"]
 
